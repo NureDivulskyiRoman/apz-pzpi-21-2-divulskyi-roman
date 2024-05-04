@@ -8,7 +8,10 @@ export const AppRouter = observer(() => {
 
   return (
     <div>
-      
+      <Navbar>
+        <Routes>
+        </Routes>
+      </Navbar>
     </div>
   );
 });
