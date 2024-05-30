@@ -1,0 +1,250 @@
+МЕТА
+     
+     
+     Мета лабораторної роботи полягає у розробці IoT частини програмної системи для керування приладами зрошення у сільському господарстві. Завдання полягає в безпосередньому створенні пристрою, який буде надсилати дані на сервер зі станом ґрунту.
+     
+     
+ЗАВДАННЯ
+
+
+     Завдання лабораторної роботи: Розробка частини програмної системи для керування приладами зрошення у сільському господарстві, що базується на концепції Internet of Things (IoT). Це означає, що розробляється система, яка здатна взаємодіяти з різними пристроями (у цьому випадку - зрошувальними пристроями) через Інтернет або мережу, дозволяючи користувачам контролювати їх віддалено.
+     Для розробки використовуються передові технології, такі як .NET і WinForms. .NET - це платформа для розробки програмного забезпечення від Microsoft, що надає засоби для розробки, виконання та управління застосунками на різних мовах програмування. WinForms - це частина .NET Framework, яка надає засоби для створення класичних настільних застосунків для ОС Windows.
+     Щоб протестувати функціональність системи без реальних зрошувальних пристроїв, використовується емуляція пристрою. Це означає, що розроблений застосунок на базі WinForms і .NET дозволяє емулювати роботу зрошувального пристрою, тобто ви можете імітувати взаємодію з пристроєм через програму.
+     Важливою складовою системи є збір статистики. Це означає, що система здатна збирати дані про роботу зрошувальних пристроїв, наприклад, час роботи, обсяг використаної води, стан пристрою тощо. Ця статистика може бути корисною для аналізу продуктивності та ефективності системи зрошення.
+
+
+3 РОЗРОБКА IOT
+3.1 Архітектура системи
+
+
+     Архітектура програмної системи для керування приладами зрошення у сільському господарстві є важливим елементом, оскільки вона визначає структуру, організацію та взаємодію компонентів системи. Ця система повинна бути розроблена таким чином, щоб забезпечити ефективне та надійне функціонування приладів зрошення, оптимізацію використання ресурсів (таких як вода, енергія) та забезпечення зручного користування для кінцевих користувачів.
+     
+
+Рисунок 3.1 – Use case діаграма
+
+
+     На рисунку 3.1 розглянемо та розробимо частину пов’язану з діями системи.
+     Розглянемо схему базу даних розроблену в минулих роботах (див. рис. 3.2)
+     
+
+Рисунок 3.2 - ER-діаграма для предметної області
+
+     IoT пристрій буде записувати дані в таблицю «Погодні умови».
+     Наведемо діаграму компонентів розроблену в минулих роботах(див. рис. 3.3).
+     
+
+     Рисунок 3.3 – Діаграма пакетів
+     
+     В цій діаграмі звернемо увагу на IoT частину. Для розробки буде використано декілька сенсорів, спеціалізованих для цього. Статистика буде надсилатися до серверної частини, де пізніше буде оброблятися.
+     Наведемо діаграму розгортання. Це важлива діаграма бо саме на ній показано спосіб того, як розроблені прилади будуть встановлюватися та прив’язуватися до серверної частини.
+     
+
+Рисунок 3.4 – Діаграма розгортання
+     На цій діаграмі, саме для розробки IoT слід звернути увагу на спосіб управління ділянками та панель адміністрації.
+     Розглянемо функціонал, який був розроблений за допомогою WinForms та мови програмування C# (див. Додаток А). Ця програма призначена для налаштування пристрою та надсилання інформації на сервер. Вона надає користувачу можливість введення даних в сенсори та взаємодії з ними за допомогою відповідних кнопок. Це дозволяє емулювати роботу реальних датчиків.
+     Коли датчики збирають інформацію, ці дані групуються в об'єкт відповідного класу. Цей об'єкт містить інформацію, яка буде надіслана на сервер для подальшої обробки. Наприклад, це може бути клас, що представляє дані про рівень вологості, температуру, рівень освітленості тощо.
+     Після групування даних в об'єкт відповідного класу, вони передаються на сервер для подальшої обробки або зберігання. Цей процес відбувається за допомогою мережевого з'єднання і може включати передачу даних через HTTP-запити, використання веб-служб або інших механізмів комунікації.
+     Отже, програма WinForms на C# дозволяє користувачам взаємодіяти з датчиками, збирати та групувати дані, а потім надсилати їх на сервер для подальшої обробки або аналізу.
+
+
+ВИСНОВКИ
+     
+     
+     Під час розробки програмної системи для IoT (Internet of Things), спрямованої на збір статистики грунту, був проведений детальний аналіз функціональних можливостей, необхідних для ефективного збору та аналізу даних про ґрунтові показники. Були розроблені та описані відповідні API-методи для взаємодії з пристроями та зберігання отриманих даних.
+     Основні функції включають в себе створення, читання, оновлення та видалення об'єктів, які відображають різноманітні аспекти збору статистики грунту, такі як вологість, pH рівень, температура тощо. API-методи також забезпечують можливість отримання реального часу та історичних даних для аналізу та використання в сільському господарстві.
+     Загалом, розроблені API-методи відображають широкий спектр функціональності програмної системи та готовність її до подальшої імплементації та використання для збору та аналізу даних про стан грунту, сприяючи оптимізації процесів сільського господарства та збереженню ресурсів.
+
+ДОДАТОК А
+Функції клієнтської частини
+     
+1. public class WeatherCondition
+2. {
+3. public DateTime DateTime { get; set; }
+4. public double Temperature { get; set; }
+5. public double Humidity { get; set; }
+6. public double Rainfall { get; set; }
+7. public string Location { get; set; }
+8. }
+9. private void button1_Click(object sender, EventArgs e)
+10. {
+11.     var temperature = numericUpDown1.Value;
+12.     var dateTime = dateTimePicker1.Value;
+13.     var humidity = numericUpDown2.Value;
+14.     var rainfall = numericUpDown3.Value;
+15.     var location = textBox1.Text;
+16. 
+17.     var weatherCondition = new WeatherCondition()
+18.     {
+19.         Temperature = Convert.ToDouble(temperature),
+20.         DateTime = dateTime,
+21.         Humidity = Convert.ToDouble(humidity),
+22.         Location = location,
+23.         Rainfall = Convert.ToDouble(rainfall),
+24.     };
+25. 
+26.     using (var client = new HttpClient())
+27.     {
+28.         string url = "http://example.com/api/weather";
+29.         var json = JsonSerializer.Serialize(weatherCondition);
+30. 
+31.         var content = new StringContent(json, Encoding.UTF8, "application/json");
+32. 
+33.         try
+34.         {
+35.             var response = client.PostAsync(url, content).Result;
+36. 
+37.             if (response.IsSuccessStatusCode)
+38.             {
+39.                 MessageBox.Show("Success");
+40.             }
+41.             else
+42.             {
+43.                 MessageBox.Show("Error. Code: " + response.StatusCode);
+44.             }
+45.         }
+46.         catch (Exception ex)
+47.         {
+48.             MessageBox.Show("Error. Message: " + ex.Message);
+49.         }
+50.     }
+51. }
+52. }
+53. }
+54. private void InitializeComponent()
+55. {
+56. this.label2 = new System.Windows.Forms.Label();
+57. this.label3 = new System.Windows.Forms.Label();
+58. this.label4 = new System.Windows.Forms.Label();
+59. this.label5 = new System.Windows.Forms.Label();
+60. this.label1 = new System.Windows.Forms.Label();
+61. this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+62. this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+63. this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+64. this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+65. this.button1 = new System.Windows.Forms.Button();
+66. this.textBox1 = new System.Windows.Forms.TextBox();
+67. ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+68. ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+69. ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+70. this.SuspendLayout();
+71. // 
+72. // label2
+73. // 
+74. this.label2.AutoSize = true;
+75. this.label2.Location = new System.Drawing.Point(52, 74);
+76. this.label2.Name = "label2";
+77. this.label2.Size = new System.Drawing.Size(100, 25);
+78. this.label2.TabIndex = 1;
+79. this.label2.Text = "date/time";
+80. // 
+81. // label3
+82. // 
+83. this.label3.AutoSize = true;
+84. this.label3.Location = new System.Drawing.Point(52, 119);
+85. this.label3.Name = "label3";
+86. this.label3.Size = new System.Drawing.Size(127, 25);
+87. this.label3.TabIndex = 2;
+88. this.label3.Text = "temperature";
+89. // 
+90. // label4
+91. // 
+92. this.label4.AutoSize = true;
+93. this.label4.Location = new System.Drawing.Point(52, 164);
+94. this.label4.Name = "label4";
+95. this.label4.Size = new System.Drawing.Size(92, 25);
+96. this.label4.TabIndex = 3;
+97. this.label4.Text = "humidity";
+98. this.label4.Click += new System.EventHandler(this.label4_Click);
+99. // 
+100. // label5
+101. // 
+102. this.label5.AutoSize = true;
+103. this.label5.Location = new System.Drawing.Point(52, 206);
+104. this.label5.Name = "label5";
+105. this.label5.Size = new System.Drawing.Size(76, 25);
+106. this.label5.TabIndex = 4;
+107. this.label5.Text = "rainfall";
+108. this.label5.Click += new System.EventHandler(this.label5_Click);
+109. // 
+110. // label1
+111. // 
+112. this.label1.AutoSize = true;
+113. this.label1.Location = new System.Drawing.Point(52, 248);
+114. this.label1.Name = "label1";
+115. this.label1.Size = new System.Drawing.Size(87, 25);
+116. this.label1.TabIndex = 5;
+117. this.label1.Text = "location";
+118. this.label1.Click += new System.EventHandler(this.label1_Click_1);
+119. // 
+120. // dateTimePicker1
+121. // 
+122. this.dateTimePicker1.Location = new System.Drawing.Point(198, 74);
+123. this.dateTimePicker1.Name = "dateTimePicker1";
+124. this.dateTimePicker1.Size = new System.Drawing.Size(569, 31);
+125. this.dateTimePicker1.TabIndex = 6;
+126. this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+127. // 
+128. // numericUpDown1
+129. // 
+130. this.numericUpDown1.Location = new System.Drawing.Point(198, 117);
+131. this.numericUpDown1.Name = "numericUpDown1";
+132. this.numericUpDown1.Size = new System.Drawing.Size(569, 31);
+133. this.numericUpDown1.TabIndex = 7;
+134. // 
+135. // numericUpDown2
+136. // 
+137. this.numericUpDown2.Location = new System.Drawing.Point(198, 164);
+138. this.numericUpDown2.Name = "numericUpDown2";
+139. this.numericUpDown2.Size = new System.Drawing.Size(569, 31);
+140. this.numericUpDown2.TabIndex = 8;
+141. // 
+142. // numericUpDown3
+143. // 
+144. this.numericUpDown3.Location = new System.Drawing.Point(198, 204);
+145. this.numericUpDown3.Name = "numericUpDown3";
+146. this.numericUpDown3.Size = new System.Drawing.Size(569, 31);
+147. this.numericUpDown3.TabIndex = 9;
+148. // 
+149. // button1
+150. // 
+151. this.button1.Location = new System.Drawing.Point(57, 310);
+152. this.button1.Name = "button1";
+153. this.button1.Size = new System.Drawing.Size(240, 50);
+154. this.button1.TabIndex = 11;
+155. this.button1.Text = "Submit data";
+156. this.button1.UseVisualStyleBackColor = true;
+157. this.button1.Click += new System.EventHandler(this.button1_Click);
+158. // 
+159. // textBox1
+160. // 
+161. this.textBox1.Location = new System.Drawing.Point(198, 242);
+162. this.textBox1.Name = "textBox1";
+163. this.textBox1.Size = new System.Drawing.Size(569, 31);
+164. this.textBox1.TabIndex = 12;
+165. // 
+166. // Form1
+167. // 
+168. this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+169. this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+170. this.ClientSize = new System.Drawing.Size(800, 450);
+171. this.Controls.Add(this.textBox1);
+172. this.Controls.Add(this.button1);
+173. this.Controls.Add(this.numericUpDown3);
+174. this.Controls.Add(this.numericUpDown2);
+175. this.Controls.Add(this.numericUpDown1);
+176. this.Controls.Add(this.dateTimePicker1);
+177. this.Controls.Add(this.label1);
+178. this.Controls.Add(this.label5);
+179. this.Controls.Add(this.label4);
+180. this.Controls.Add(this.label3);
+181. this.Controls.Add(this.label2);
+182. this.Name = "Form1";
+183. this.Text = "Form1";
+184. this.Load += new System.EventHandler(this.Form1_Load);
+185. ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+186. ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+187. ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+188. this.ResumeLayout(false);
+189. this.PerformLayout();
+
+190. }
